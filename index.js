@@ -34,7 +34,7 @@ app.get("/", (_req, res) => {
     res.render("homepage");
 });
 
-app.use("/city", cityRouter);
+app.use("/city", city);
 
 app.get("/login", (_req, res) => {
     res.render("login");
