@@ -20,6 +20,7 @@ app.engine("handlebars", handlebars.engine());
 app.set("view engine", "handlebars");
 
 // Middlewares
+
 app.use(cookieParser());
 // pour le css et le js dans le html
 app.use(express.static(path.join(__dirname, "/public")));
@@ -34,7 +35,7 @@ mongoose
 	.then(() => console.log("Connected to MongoDB"));
 
 app.get("/", (_req, res) => {
-	res.render("Welcome");
+	res.render("homepage");
 });
 
 app.use("/city", cityRouter);
