@@ -4,8 +4,11 @@ const mongoose = require("mongoose")
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const user = require("./models/userModel");
-const city = require("./routers/cityRouter");
-const login = require("./routers/loginRouter");
+const cityRouter = require("./routers/cityRouter");
+const loginRouter = require("./routers/loginRouter");
+const signupRouter = require("./routers/signupRouter");
+const productsRouter = require("./routers/productsRouter");
+const profileRouter = require("./routers/profileRouter");
 const dotenv = require("dotenv");
 dotenv.config({
     path: "./config.env",
@@ -31,19 +34,15 @@ mongoose
 	.then(() => console.log("Connected to MongoDB"));
 
 app.get("/", (_req, res) => {
-    res.render("homepage");
+	res.render("Welcome");
 });
 
-app.use("/city", city);
+app.use("/city", cityRouter);
+app.use("/signup", signupRouter);
+app.use("/login", loginRouter);
+app.use("/products", productsRouter);
+app.use("/profile", profileRouter);
 
-app.get("/login", (_req, res) => {
-    res.render("login");
-});
-  
-app.get("/products", (_req, res) => {
-    res.render("products");
-  });
-  
 app.use("*", (err, req, res, next) => {
 	res.send("error");
 });
